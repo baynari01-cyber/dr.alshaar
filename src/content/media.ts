@@ -54,7 +54,11 @@ export const media = {
       alt: "تجميل الأنف — قبل وبعد، منظر جانبي",
       placeholderLabel: "Rhinoplasty",
     },
-    revision: pending("إعادة عمليات تجميل الأنف", "Revision rhinoplasty"),
+    revision: {
+      src: "/images/gallery/revision-rhinoplasty-oblique.jpg",
+      alt: "حالة إعادة عملية تجميل الأنف — قبل وبعد",
+      placeholderLabel: "Revision rhinoplasty",
+    },
     otoplasty: {
       src: "/images/otoplasty/otoplasty-result-01.jpg",
       alt: "نتيجة عملية تصحيح الأذن البارزة",
@@ -94,8 +98,8 @@ export type GalleryItem = {
 const fromInstagram = (src: string, alt: string): MediaAsset => ({ src, alt, placeholderLabel: "Result" });
 
 /**
- * Editorial gallery — real results published by Dr. Alshaar on Instagram
- * (@dr.alshaar), faces blurred by the clinic. Patient images require
+ * Editorial gallery — real results published by Dr. Alshaar on his
+ * Instagram (@dr.alshaar) and Facebook pages, faces blurred by the clinic. Patient images require
  * documented consent; add new files to `/public/images/gallery`.
  */
 export const gallery: readonly GalleryItem[] = [
@@ -107,4 +111,8 @@ export const gallery: readonly GalleryItem[] = [
   { id: "g6", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-frontal-week1.jpg", "تجميل الأنف — منظر أمامي، النتيجة بعد أسبوع عند فك الجبيرة") },
   { id: "g7", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-profile-left-week1.jpg", "تجميل الأنف — منظر جانبي، النتيجة بعد أسبوع عند فك الجبيرة") },
   { id: "g8", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-base-week1.jpg", "تجميل الأنف — منظر سفلي، النتيجة بعد أسبوع عند فك الجبيرة") },
+  { id: "g9", category: "otoplasty", asset: fromInstagram("/images/gallery/otoplasty-lateral-02.jpg", "تصحيح الأذن البارزة — قبل وبعد") },
+  { id: "g10", category: "rhinoplasty", asset: fromInstagram("/images/gallery/revision-rhinoplasty-oblique.jpg", "إعادة عملية تجميل الأنف — قبل وبعد") },
+  { id: "g11", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-profile-02.jpg", "تجميل الأنف — قبل وبعد، منظر جانبي") },
+  { id: "g12", category: "otoplasty", asset: fromInstagram("/images/gallery/otoplasty-lateral-04.jpg", "تصحيح الأذن البارزة — قبل وبعد") },
 ];
