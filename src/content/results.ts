@@ -16,10 +16,12 @@ export type ResultCase = {
   before: MediaAsset;
   after: MediaAsset;
   /**
-   * Must be `true` only for real cases by Dr. Alshaar, published with the
-   * patient's written consent. Unverified slots render as placeholders.
+   * Must be `true` only for real cases by Dr. Alshaar that he has published
+   * himself (with the patient's consent). Unverified slots render as placeholders.
    */
   verified: boolean;
+  /** Original publication of the photographs. */
+  sourceUrl?: string;
 };
 
 const slot = (id: string, category: ResultCategory, viewEn: string): ResultCase => ({
@@ -32,9 +34,35 @@ const slot = (id: string, category: ResultCategory, viewEn: string): ResultCase 
   verified: false,
 });
 
+/**
+ * Halves of the before/after composites published by Dr. Alshaar on
+ * Instagram (faces blurred by the clinic, watermark kept).
+ */
+const instagramCase = (id: string, viewEn: string, viewAr: string, sourceUrl: string): ResultCase => ({
+  id,
+  category: "rhinoplasty",
+  viewEn,
+  before: {
+    src: `/images/rhinoplasty/${id}-before.jpg`,
+    alt: `قبل عملية تجميل الأنف — ${viewAr}`,
+    placeholderLabel: "Before",
+  },
+  after: {
+    src: `/images/rhinoplasty/${id}-after.jpg`,
+    alt: `بعد عملية تجميل الأنف — ${viewAr}`,
+    placeholderLabel: "After",
+  },
+  verified: true,
+  sourceUrl,
+});
+
+const POST_DdHaOfKCFPw = "https://www.instagram.com/p/DdHaOfKCFPw/";
+
 export const resultCases: readonly ResultCase[] = [
-  slot("rh-01", "rhinoplasty", "Profile view"),
-  slot("rh-02", "rhinoplasty", "Three-quarter view"),
+  instagramCase("rh-01", "Profile view", "منظر جانبي", POST_DdHaOfKCFPw),
+  instagramCase("rh-02", "Frontal view", "منظر أمامي", POST_DdHaOfKCFPw),
+  instagramCase("rh-03", "Oblique view", "منظر مائل", POST_DdHaOfKCFPw),
+  instagramCase("rh-04", "Base view", "منظر سفلي", POST_DdHaOfKCFPw),
   slot("rv-01", "revision", "Profile view"),
   slot("ot-01", "otoplasty", "Posterior view"),
 ];

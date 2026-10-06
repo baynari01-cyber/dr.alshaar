@@ -39,9 +39,18 @@ export const media = {
     consult: pending("د. محمد الشعر خلال استشارة", "Doctor in consultation"),
   },
   services: {
-    rhinoplasty: pending("تجميل الأنف", "Rhinoplasty — profile"),
+    rhinoplasty: {
+      src: "/images/gallery/rhinoplasty-profile-week1.jpg",
+      alt: "تجميل الأنف — قبل وبعد، منظر جانبي",
+      placeholderLabel: "Rhinoplasty",
+    },
     revision: pending("إعادة عمليات تجميل الأنف", "Revision rhinoplasty"),
-    otoplasty: pending("تصحيح الأذن البارزة", "Otoplasty"),
+    otoplasty: {
+      src: "/images/otoplasty/otoplasty-result-01.jpg",
+      alt: "نتيجة عملية تصحيح الأذن البارزة",
+      placeholderLabel: "Otoplasty",
+      focus: "50% 35%",
+    },
     ent: pending("جراحة الأنف والأذن والحنجرة", "ENT surgery — theatre"),
   },
   clinic: {
@@ -56,19 +65,20 @@ export type GalleryItem = {
   category: "rhinoplasty" | "otoplasty" | "doctor" | "clinic" | "work";
 };
 
+const fromInstagram = (src: string, alt: string): MediaAsset => ({ src, alt, placeholderLabel: "Result" });
+
 /**
- * Editorial gallery, laid out in groups of four (tall · square · wide ·
- * square). Keep the count a multiple of four for a seamless grid. Images live
- * in `/public/images/gallery` or the category folders; patient images
- * require documented consent.
+ * Editorial gallery — real results published by Dr. Alshaar on Instagram
+ * (@dr.alshaar), faces blurred by the clinic. Patient images require
+ * documented consent; add new files to `/public/images/gallery`.
  */
 export const gallery: readonly GalleryItem[] = [
-  { id: "g1", category: "rhinoplasty", asset: pending("نتيجة تجميل أنف", "Rhinoplasty result") },
-  { id: "g2", category: "doctor", asset: pending("د. محمد الشعر", "Doctor at work") },
-  { id: "g3", category: "clinic", asset: media.clinic.interior },
-  { id: "g4", category: "otoplasty", asset: pending("نتيجة تصحيح أذن", "Otoplasty result") },
-  { id: "g5", category: "work", asset: pending("في غرفة العمليات", "Surgical work") },
-  { id: "g6", category: "rhinoplasty", asset: pending("نتيجة إعادة تجميل أنف", "Revision result") },
-  { id: "g7", category: "doctor", asset: media.doctor.consult },
-  { id: "g8", category: "clinic", asset: media.clinic.reception },
+  { id: "g1", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-profile-week1.jpg", "تجميل الأنف — منظر جانبي، النتيجة بعد أسبوع عند فك الجبيرة") },
+  { id: "g2", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-profile.jpg", "تجميل الأنف — قبل وبعد، منظر جانبي") },
+  { id: "g3", category: "otoplasty", asset: fromInstagram("/images/otoplasty/otoplasty-result-01.jpg", "نتيجة عملية تصحيح الأذن البارزة") },
+  { id: "g4", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-three-quarter-week1.jpg", "تجميل الأنف — منظر مائل، النتيجة بعد أسبوع عند فك الجبيرة") },
+  { id: "g5", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-oblique.jpg", "تجميل الأنف — قبل وبعد، منظر مائل") },
+  { id: "g6", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-frontal-week1.jpg", "تجميل الأنف — منظر أمامي، النتيجة بعد أسبوع عند فك الجبيرة") },
+  { id: "g7", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-profile-left-week1.jpg", "تجميل الأنف — منظر جانبي، النتيجة بعد أسبوع عند فك الجبيرة") },
+  { id: "g8", category: "rhinoplasty", asset: fromInstagram("/images/gallery/rhinoplasty-base-week1.jpg", "تجميل الأنف — منظر سفلي، النتيجة بعد أسبوع عند فك الجبيرة") },
 ];

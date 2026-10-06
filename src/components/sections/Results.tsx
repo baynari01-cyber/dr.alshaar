@@ -52,7 +52,7 @@ export function Results() {
           </div>
           <Reveal delay={0.15} className="lg:col-span-4 lg:col-start-9">
             <p className="leading-8 text-ink-soft">
-              تُعرض هنا حالات حقيقية من عمل الدكتور محمد الشعر فقط، وتُنشر بموافقة خطية من أصحابها.
+              حالات حقيقية من عمل الدكتور محمد الشعر، كما نُشرت على حسابه الرسمي، مع تمويه الوجوه حفاظًا على خصوصية المرضى.
             </p>
           </Reveal>
         </div>
@@ -112,7 +112,7 @@ export function Results() {
                   before={current.before}
                   after={current.after}
                   sizes="(min-width: 1024px) 55vw, 100vw"
-                  className="aspect-[4/5] w-full sm:aspect-[5/4]"
+                  className={`w-full ${current.verified ? "aspect-[8/5]" : "aspect-[4/5] sm:aspect-[5/4]"}`}
                 />
               </motion.div>
             </AnimatePresence>
@@ -128,7 +128,7 @@ export function Results() {
               <p className="mt-4 text-lg">{meta.ar}</p>
               <dl className="mt-10 border-t border-line text-sm">
                 <div className="flex justify-between border-b border-line py-4">
-                  <dt className="text-ink-mute">الحالة</dt>
+                  <dt className="text-ink-mute">الصورة</dt>
                   <dd dir="ltr" className="font-serif text-base italic">
                     {pad(index + 1)} / {pad(cases.length)}
                   </dd>
@@ -139,8 +139,23 @@ export function Results() {
                 </div>
                 <div className="flex justify-between border-b border-line py-4">
                   <dt className="text-ink-mute">التوثيق</dt>
-                  <dd className={current.verified ? "text-ink" : "text-gold-ink"}>
-                    {current.verified ? "حالة موثّقة بموافقة المريض" : "بانتظار إضافة حالة موثّقة"}
+                  <dd className={`text-end ${current.verified ? "text-ink" : "text-gold-ink"}`}>
+                    {current.verified ? (
+                      current.sourceUrl ? (
+                        <a
+                          href={current.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="border-b border-line-strong pb-0.5 transition-colors hover:border-ink"
+                        >
+                          منشورة على حساب الدكتور
+                        </a>
+                      ) : (
+                        "منشورة على حساب الدكتور"
+                      )
+                    ) : (
+                      "بانتظار إضافة حالة موثّقة"
+                    )}
                   </dd>
                 </div>
               </dl>

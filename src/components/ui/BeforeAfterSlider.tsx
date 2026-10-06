@@ -79,6 +79,8 @@ export function BeforeAfterSlider({ before, after, sizes, className = "" }: Befo
   };
 
   const beforeShown = Math.round(100 - position);
+  // Placeholder panes carry their caption at the bottom; keep labels clear of it.
+  const labelY = before.src && after.src ? "bottom-5" : "top-5";
 
   return (
     <div
@@ -104,14 +106,14 @@ export function BeforeAfterSlider({ before, after, sizes, className = "" }: Befo
 
       <span
         aria-hidden
-        className="eyebrow absolute top-5 right-5 bg-ivory/85 px-3 py-1.5 text-ink transition-opacity duration-300"
+        className={`eyebrow absolute ${labelY} right-5 bg-ivory/85 px-3 py-1.5 text-ink transition-opacity duration-300`}
         style={{ opacity: position > 85 ? 0 : 1 }}
       >
         قبل
       </span>
       <span
         aria-hidden
-        className="eyebrow absolute top-5 left-5 bg-ink/85 px-3 py-1.5 text-ivory transition-opacity duration-300"
+        className={`eyebrow absolute ${labelY} left-5 bg-ink/85 px-3 py-1.5 text-ivory transition-opacity duration-300`}
         style={{ opacity: position < 15 ? 0 : 1 }}
       >
         بعد
