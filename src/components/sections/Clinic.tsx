@@ -1,8 +1,17 @@
 import { ButtonLink } from "@/components/ui/Button";
 import { PhoneIcon, PinIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { media } from "@/content/media";
 import { contact, links } from "@/content/site";
+
+const spaces = [
+  { asset: media.clinic.entrance, label: "المدخل", en: "Entrance" },
+  { asset: media.clinic.reception, label: "الاستقبال", en: "Reception" },
+  { asset: media.clinic.treatment, label: "غرفة الفحص والعلاج", en: "Treatment" },
+  { asset: media.clinic.exam, label: "غرفة المعاينة", en: "Examination" },
+] as const;
 
 export function Clinic() {
   const [city, ...rest] = contact.addressLines;
@@ -59,6 +68,30 @@ export function Clinic() {
           </div>
         </Reveal>
       </div>
+
+      {/* Phones: snap carousel. Desktop: four-up editorial row. */}
+      <ul
+        aria-label="صور العيادة"
+        className="mt-20 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 [scrollbar-width:none] md:px-10 md:scroll-px-10 lg:container-lux lg:mt-28 lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible [&::-webkit-scrollbar]:hidden"
+      >
+        {spaces.map((space, i) => (
+          <li key={space.en} className="w-[72%] shrink-0 snap-start sm:w-[44%] lg:w-auto">
+            <Reveal delay={i * 0.08}>
+              <figure>
+                <Media
+                  asset={space.asset}
+                  sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 72vw"
+                  className="aspect-[4/5] w-full"
+                />
+                <figcaption className="mt-4 flex items-baseline justify-between border-b border-line pb-3">
+                  <span className="text-sm">{space.label}</span>
+                  <span className="eyebrow text-ink-mute">{space.en}</span>
+                </figcaption>
+              </figure>
+            </Reveal>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

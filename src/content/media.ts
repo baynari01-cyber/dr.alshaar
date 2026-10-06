@@ -69,8 +69,19 @@ export const media = {
     },
   },
   clinic: {
-    interior: pending("عيادة د. محمد الشعر في عمّان", "Clinic interior"),
-    reception: pending("استقبال العيادة", "Clinic reception"),
+    entrance: {
+      src: "/images/clinic/clinic-entrance.jpg",
+      alt: "مدخل عيادة د. محمد الشعر",
+      placeholderLabel: "Entrance",
+      focus: "100% 50%",
+    },
+    reception: { src: "/images/clinic/clinic-reception.jpg", alt: "استقبال العيادة", placeholderLabel: "Reception" },
+    treatment: {
+      src: "/images/clinic/clinic-treatment-room.jpg",
+      alt: "غرفة الفحص والعلاج بالمنظار",
+      placeholderLabel: "Treatment room",
+    },
+    exam: { src: "/images/clinic/clinic-exam-room.jpg", alt: "غرفة المعاينة", placeholderLabel: "Examination room" },
   },
 } as const satisfies Record<string, Record<string, MediaAsset>>;
 
