@@ -42,3 +42,10 @@ Before / after cases require the patient's written consent; set
 `testimonials.ts` is intentionally empty. While it is empty the section is
 hidden in production builds and shows marked placeholders in development only.
 Add reviews verbatim from their published source (e.g. Google).
+
+## Booking
+
+`src/components/booking/BookingForm.tsx` collects the consultation request and
+validates it with `src/lib/booking.ts`. Submitting opens WhatsApp to the clinic
+number (`contact.phoneE164` in `src/content/site.ts`) with a formatted message
+the patient sends from their own WhatsApp. No data is stored by the site.
