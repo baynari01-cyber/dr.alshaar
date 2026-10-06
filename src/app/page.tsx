@@ -6,6 +6,7 @@ import { Clinic } from "@/components/sections/Clinic";
 import { Consultation } from "@/components/sections/Consultation";
 import { Gallery } from "@/components/sections/Gallery";
 import { Hero } from "@/components/sections/Hero";
+import { Marquee } from "@/components/sections/Marquee";
 import { Philosophy } from "@/components/sections/Philosophy";
 import { Pillars } from "@/components/sections/Pillars";
 import { Results } from "@/components/sections/Results";
@@ -25,6 +26,7 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
+        <Marquee />
         <Philosophy />
         <Results />
         <About />

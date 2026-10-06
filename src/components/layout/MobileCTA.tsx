@@ -6,14 +6,28 @@ import { PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 
 /** Thumb-reach booking bar for phones and small tablets. */
 export function MobileCTA() {
-  const [visible, setVisible] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+  const [bookingInView, setBookingInView] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.45);
+    const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.6);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    // Step aside while the booking form itself is on screen.
+    const booking = document.getElementById("booking");
+    const observer = booking
+      ? new IntersectionObserver(([entry]) => setBookingInView(entry.isIntersecting), { threshold: 0.05 })
+      : null;
+    if (booking && observer) observer.observe(booking);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer?.disconnect();
+    };
   }, []);
+
+  const visible = pastHero && !bookingInView;
 
   return (
     <div
@@ -25,13 +39,11 @@ export function MobileCTA() {
     >
       <div className="flex gap-2.5">
         <a
-          href={links.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#booking"
           className="flex h-[3.25rem] flex-1 items-center justify-center gap-3 bg-ink text-[0.95rem] font-medium text-ivory active:bg-[#2c2924]"
         >
           <WhatsAppIcon />
-          احجز عبر WhatsApp
+          احجز استشارتك
         </a>
         <a
           href={links.tel}

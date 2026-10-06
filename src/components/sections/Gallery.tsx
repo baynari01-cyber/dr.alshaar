@@ -13,7 +13,7 @@ export function Gallery() {
   const assets = gallery.map((g) => g.asset);
 
   return (
-    <section aria-labelledby="gallery-title" className="border-t border-line bg-ivory py-28 lg:py-40">
+    <section aria-labelledby="gallery-title" className="bg-ivory-deep py-28 lg:py-40">
       <div className="container-lux">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">

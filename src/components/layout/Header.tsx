@@ -43,10 +43,14 @@ export function Header() {
     : scrolled
       ? "border-b border-line bg-ivory/90 backdrop-blur-md"
       : "border-b border-transparent bg-transparent";
+  // Over the dark hero the bar is transparent with light type.
+  const onDark = !open && !scrolled;
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-700 ease-lux ${surface}`}
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter,color] duration-700 ease-lux ${surface} ${
+        onDark ? "text-ivory" : "text-ink"
+      }`}
     >
       <div
         className={`container-lux flex items-center justify-between transition-[height] duration-700 ease-lux ${
@@ -55,7 +59,7 @@ export function Header() {
       >
         <a href="#home" className="flex flex-col leading-none" aria-label={`${doctor.nameAr} — الرئيسية`}>
           <span className="text-[1.05rem] font-medium tracking-tight">{doctor.nameAr}</span>
-          <span dir="ltr" className="eyebrow mt-1.5 !text-[0.55rem] text-gold-ink">
+          <span dir="ltr" className={`eyebrow mt-1.5 !text-[0.55rem] ${onDark ? "text-gold-light" : "text-gold-ink"}`}>
             {doctor.titleEn}
           </span>
         </a>
@@ -66,7 +70,7 @@ export function Header() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="relative text-sm text-ink-soft transition-colors duration-300 hover:text-ink after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-right after:scale-x-0 after:bg-gold after:transition-transform after:duration-500 hover:after:scale-x-100"
+                  className={`relative text-sm transition-colors duration-300 ${onDark ? "text-ivory/75 hover:text-ivory" : "text-ink-soft hover:text-ink"} after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-right after:scale-x-0 after:bg-gold after:transition-transform after:duration-500 hover:after:scale-x-100`}
                 >
                   {item.label}
                 </a>
@@ -77,10 +81,10 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <a
-            href={links.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden h-11 items-center bg-ink px-6 text-sm font-medium tracking-wide text-ivory transition-colors duration-500 hover:bg-[#2c2924] sm:inline-flex"
+            href="#booking"
+            className={`hidden h-11 items-center px-6 text-sm font-medium tracking-wide transition-colors duration-500 sm:inline-flex ${
+              onDark ? "bg-gold-light text-night hover:bg-[#d8bf9c]" : "bg-ink text-ivory hover:bg-[#2c2924]"
+            }`}
           >
             احجز استشارتك
           </a>
@@ -97,8 +101,8 @@ export function Header() {
               <CloseIcon />
             ) : (
               <span aria-hidden className="flex w-6 flex-col items-end gap-[7px]">
-                <span className="h-px w-6 bg-ink" />
-                <span className="h-px w-4 bg-ink" />
+                <span className="h-px w-6 bg-current" />
+                <span className="h-px w-4 bg-current" />
               </span>
             )}
           </button>
@@ -140,9 +144,8 @@ export function Header() {
             </nav>
             <div className="mt-10 flex flex-col gap-3">
               <a
-                href={links.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#booking"
+                onClick={() => setOpen(false)}
                 className="flex h-14 items-center justify-center gap-3 bg-ink text-ivory"
               >
                 <WhatsAppIcon /> احجز استشارتك

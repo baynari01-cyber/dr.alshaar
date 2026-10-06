@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --ivory: #f7f3ec;
-  --ivory-deep: #efe8dc;
-  --sand: #e6ddcf;
+  --ivory: #f4eee4;
+  --ivory-deep: #e9dfd0;
+  --sand: #dfd3c1;
   --ink: #1c1a17;
   --ink-soft: #5d574e;
   --ink-mute: #8a8378;
@@ -11,7 +11,8 @@
   --line-strong: rgb(28 26 23 / 0.24);
   --gold: #a8875a;
   --gold-ink: #806338;
-  --night: #161411;
+  --night: #14120f;
+  --night-soft: #1e1b17;
   --night-line: rgb(247 243 236 / 0.14);
   --gold-light: #cdb08a;
   --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
@@ -30,6 +31,7 @@
   --color-gold-ink: var(--gold-ink);
   --color-gold-light: var(--gold-light);
   --color-night: var(--night);
+  --color-night-soft: var(--night-soft);
   --color-night-line: var(--night-line);
   --font-sans: var(--font-arabic), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif-latin), ui-serif, Georgia, serif;
@@ -115,5 +117,14 @@
   60%,
   100% {
     transform: translateY(200%);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
   }
 }

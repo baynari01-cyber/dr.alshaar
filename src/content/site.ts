@@ -24,7 +24,8 @@ export const contact = {
   phoneDisplay: "+962 79 512 8805",
   instagramHandle: "dr.alshaar",
   addressLines: ["عمّان", "شارع ابن خلدون", "مجمع جوهرة المملكة رقم 57", "الطابق الثالث"],
-  mapsQuery: "Jawharat Al-Mamlaka Complex 57, Ibn Khaldoun Street, Amman, Jordan",
+  /** Pin of "عيادة الدكتور محمد الشعر" on Google Maps. */
+  mapsCoordinates: { lat: 31.9520716, lng: 35.90152 },
   whatsappMessage: "مرحبًا د. محمد، أرغب بحجز استشارة.",
 } as const;
 
@@ -32,8 +33,8 @@ export const links = {
   whatsapp: `https://wa.me/${contact.phoneE164.replace("+", "")}?text=${encodeURIComponent(contact.whatsappMessage)}`,
   tel: `tel:${contact.phoneE164}`,
   instagram: `https://www.instagram.com/${contact.instagramHandle}/`,
-  maps: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapsQuery)}`,
-  mapsEmbed: `https://www.google.com/maps?q=${encodeURIComponent(contact.mapsQuery)}&output=embed`,
+  maps: "https://maps.app.goo.gl/CLxFtFHeQSFH3Gw37",
+  mapsEmbed: `https://www.google.com/maps?q=${contact.mapsCoordinates.lat},${contact.mapsCoordinates.lng}&z=17&hl=ar&output=embed`,
 } as const;
 
 export type NavItem = { href: `#${string}`; label: string };
