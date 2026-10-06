@@ -34,8 +34,18 @@ const pending = (alt: string, placeholderLabel: string, focus?: string): MediaAs
 
 export const media = {
   doctor: {
-    hero: pending("د. محمد الشعر في العيادة", "Doctor portrait — hero", "50% 25%"),
-    about: pending("صورة شخصية للدكتور محمد الشعر", "Doctor portrait — about", "50% 25%"),
+    hero: {
+      src: "/images/doctor/doctor-endoscopic-surgery.jpg",
+      alt: "د. محمد الشعر خلال عملية بالمنظار",
+      placeholderLabel: "Doctor — hero",
+      focus: "72% 50%",
+    },
+    about: {
+      src: "/images/doctor/doctor-microscope-surgery.jpg",
+      alt: "د. محمد الشعر يجري عملية باستخدام المجهر الجراحي",
+      placeholderLabel: "Doctor — about",
+      focus: "66% 50%",
+    },
     consult: pending("د. محمد الشعر خلال استشارة", "Doctor in consultation"),
   },
   services: {
@@ -51,7 +61,12 @@ export const media = {
       placeholderLabel: "Otoplasty",
       focus: "50% 35%",
     },
-    ent: pending("جراحة الأنف والأذن والحنجرة", "ENT surgery — theatre"),
+    ent: {
+      src: "/images/doctor/doctor-microscope-surgery.jpg",
+      alt: "جراحة الأذن باستخدام المجهر الجراحي",
+      placeholderLabel: "ENT surgery",
+      focus: "38% 50%",
+    },
   },
   clinic: {
     interior: pending("عيادة د. محمد الشعر في عمّان", "Clinic interior"),

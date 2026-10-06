@@ -52,7 +52,7 @@ export function Results() {
           </div>
           <Reveal delay={0.15} className="lg:col-span-4 lg:col-start-9">
             <p className="leading-8 text-ink-soft">
-              حالات حقيقية من عمل الدكتور محمد الشعر، كما نُشرت على حسابه الرسمي، مع تمويه الوجوه حفاظًا على خصوصية المرضى.
+              حالات حقيقية من عمل الدكتور محمد الشعر، مع الحفاظ على خصوصية المرضى.
             </p>
           </Reveal>
         </div>
@@ -112,7 +112,13 @@ export function Results() {
                   before={current.before}
                   after={current.after}
                   sizes="(min-width: 1024px) 55vw, 100vw"
-                  className={`w-full ${current.verified ? "aspect-[8/5]" : "aspect-[4/5] sm:aspect-[5/4]"}`}
+                  className={`w-full ${
+                    !current.verified
+                      ? "aspect-[4/5] sm:aspect-[5/4]"
+                      : current.orientation === "portrait"
+                        ? "mx-auto aspect-[4/5] max-w-xl"
+                        : "aspect-[8/5]"
+                  }`}
                 />
               </motion.div>
             </AnimatePresence>
@@ -151,7 +157,7 @@ export function Results() {
                           منشورة على حساب الدكتور
                         </a>
                       ) : (
-                        "منشورة على حساب الدكتور"
+                        "من أرشيف عيادة الدكتور"
                       )
                     ) : (
                       "بانتظار إضافة حالة موثّقة"

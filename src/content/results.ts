@@ -22,6 +22,8 @@ export type ResultCase = {
   verified: boolean;
   /** Original publication of the photographs. */
   sourceUrl?: string;
+  /** Shape of each half; portrait halves get a narrower, taller frame. */
+  orientation?: "portrait" | "landscape";
 };
 
 const slot = (id: string, category: ResultCategory, viewEn: string): ResultCase => ({
@@ -56,9 +58,28 @@ const instagramCase = (id: string, viewEn: string, viewAr: string, sourceUrl: st
   sourceUrl,
 });
 
+/** Before/after pairs supplied from the clinic's own archive. */
+const archiveCase = (
+  id: string,
+  viewEn: string,
+  viewAr: string,
+  orientation: "portrait" | "landscape",
+): ResultCase => ({
+  id,
+  category: "rhinoplasty",
+  viewEn,
+  orientation,
+  before: { src: `/images/rhinoplasty/${id}-before.jpg`, alt: `قبل عملية تجميل الأنف — ${viewAr}`, placeholderLabel: "Before" },
+  after: { src: `/images/rhinoplasty/${id}-after.jpg`, alt: `بعد عملية تجميل الأنف — ${viewAr}`, placeholderLabel: "After" },
+  verified: true,
+});
+
 const POST_DdHaOfKCFPw = "https://www.instagram.com/p/DdHaOfKCFPw/";
 
 export const resultCases: readonly ResultCase[] = [
+  archiveCase("rh-05", "Profile view", "منظر جانبي", "portrait"),
+  archiveCase("rh-06", "Profile view", "منظر جانبي", "portrait"),
+  archiveCase("rh-07", "Oblique view", "منظر مائل", "landscape"),
   instagramCase("rh-01", "Profile view", "منظر جانبي", POST_DdHaOfKCFPw),
   instagramCase("rh-02", "Frontal view", "منظر أمامي", POST_DdHaOfKCFPw),
   instagramCase("rh-03", "Oblique view", "منظر مائل", POST_DdHaOfKCFPw),
