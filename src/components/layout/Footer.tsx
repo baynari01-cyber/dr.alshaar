@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { contact, doctor, links, nav } from "@/content/site";
 
 export function Footer() {
@@ -63,7 +64,12 @@ export function Footer() {
           <p>
             © {year} {doctor.nameAr}. جميع الحقوق محفوظة.
           </p>
-          <p dir="ltr">{doctor.nameEn} — {doctor.locationEn}</p>
+          <div className="flex items-center gap-6">
+            <Link href="/admin" className="transition-colors hover:text-ivory">
+              دخول العيادة
+            </Link>
+            <p dir="ltr">{doctor.nameEn} — {doctor.locationEn}</p>
+          </div>
         </div>
       </div>
     </footer>

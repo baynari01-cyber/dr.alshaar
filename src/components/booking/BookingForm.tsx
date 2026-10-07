@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useId, useState, useSyncExternalStore, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { WhatsAppIcon } from "@/components/ui/icons";
+import { addBooking } from "@/lib/admin/store";
 import {
   LIMITS,
   asksPriorSurgery,
@@ -52,6 +53,8 @@ export function BookingForm() {
       return;
     }
     const url = bookingWhatsAppUrl(values);
+    // Demo: also file the request in the clinic dashboard (/admin) stored in this browser.
+    addBooking(values, "website");
     setSentUrl(url);
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -286,7 +289,7 @@ export function BookingForm() {
               <WhatsAppIcon />
               إرسال الطلب عبر WhatsApp
             </button>
-            <p className="text-xs leading-6 text-ivory/45">يُرسل طلبك مباشرة إلى رقم العيادة، ولا نحتفظ بأي بيانات.</p>
+            <p className="text-xs leading-6 text-ivory/45">يُرسل طلبك مباشرة إلى رقم العيادة عبر WhatsApp.</p>
           </div>
         </motion.form>
       )}
